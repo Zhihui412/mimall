@@ -67,13 +67,13 @@ export default {
           this.$cookie.set("userId", res.id, { expires: "Session" });
           // this.$store.dispatch('saveUserName',res.username);
           this.saveUserName(res.username);
-          this.$router.push('/index')
-        //   this.$router.push({
-        //     name: "index",
-        //     params: {
-        //       from: "login",
-        //     },
-        //   });
+          // this.$router.push('/index');
+          this.$router.push({
+            name: "index",
+            params: {
+              from: "login",
+            },
+          });
         });
     },
     ...mapActions(["saveUserName"]),
@@ -86,7 +86,8 @@ export default {
         })
         .then(() => {
             alert('注册成功！')
-        //   this.$message.success("注册成功");
+            // Message.success('注册成功！')
+          this.$message.success("注册成功");
         });
     },
   },

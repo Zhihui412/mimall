@@ -89,6 +89,7 @@
             selected = item.productSelected;
         if(type == '-'){
           if(quantity == 1){
+            // Message.info('商品至少保留一件')
             this.$message.warning('商品至少保留一件');
             return;
           }
@@ -112,6 +113,7 @@
       // 删除购物车商品
       delProduct(item){
         this.axios.delete(`/carts/${item.productId}`).then((res)=>{
+          // Message.success('删除成功！')
           this.$message.success('删除成功');
           this.renderData(res);
         });

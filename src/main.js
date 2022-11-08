@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import VueCookie from 'vue-cookie'
+import { Message } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+// 将axios挂载到vue实例上，方便调用
 import VueAxios from 'vue-axios'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
@@ -31,10 +34,9 @@ axios.interceptors.response.use(function(response) {
   } else if(res.status == 10){
     if(path !== '#/index'){
       window.location.href = '/#/login';
-    }
-    
+    }    
   } else{
-    alert(res.msg);
+    Message.warning(res.msg)
     return Promise.reject();
   }
 });
@@ -44,6 +46,7 @@ Vue.use(VueCookie);
 Vue.use(VueLazyload,{
   loading:'/imgs/loading-svg/loading-bars.svg'
 });
+Vue.prototype.$message = Message;
 Vue.config.productionTip = false
 
 new Vue({
